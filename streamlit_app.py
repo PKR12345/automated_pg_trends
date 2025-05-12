@@ -315,7 +315,7 @@ def main():
             selected_list = st.multiselect(
                 label=f"{brand}",
                 options=options,
-                default=st.session_state.pg_keywords.get(brand, []),
+                default=st.session_state.pg_keywords_selected.get(brand, []),
                 key=f"sel_{brand}"
             )
             selected[brand] = selected_list
