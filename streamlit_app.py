@@ -229,7 +229,7 @@ def get_trends_data(keywords):
         raise Exception(f"Failed to extract trends data for keywords '{keywords}' after 10 attempts")
 
 # Function to run the complete processing and return final dataframes
-def run_process():
+def run_process(pg_keywords):
     if 'news_overall_df' not in st.session_state:
         st.session_state['news_overall_df'] = None
     if 'summary_overall_df' not in st.session_state:
@@ -330,7 +330,7 @@ def main():
     # Button to trigger the initial process
     if st.button("Start Process"):
         try:
-            news_df, summary_df, trends_df = run_process()
+            news_df, summary_df, trends_df = run_process(st.session_state.pg_keywords)
             st.session_state.process_completed = True  # Mark process as completed
             st.success("Process completed successfully!")
         except Exception as e:
