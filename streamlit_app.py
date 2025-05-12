@@ -303,7 +303,7 @@ def main():
     if 'process_completed' not in st.session_state:
         st.session_state.process_completed = False
     if 'pg_keywords_selected' not in st.session_state:
-        st.session_state.pg_keywords = DEFAULT_PG_KEYWORDS.copy()
+        st.session_state.pg_keywords_selected = DEFAULT_PG_KEYWORDS.copy()
     if 'keyword_summary' not in st.session_state:
         st.session_state.keyword_summary = {}
 
