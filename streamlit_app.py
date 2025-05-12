@@ -302,7 +302,7 @@ def main():
     # Initialize session state
     if 'process_completed' not in st.session_state:
         st.session_state.process_completed = False
-    if 'pg_keywords' not in st.session_state:
+    if 'pg_keywords_selected' not in st.session_state:
         st.session_state.pg_keywords = DEFAULT_PG_KEYWORDS.copy()
     if 'keyword_summary' not in st.session_state:
         st.session_state.keyword_summary = {}
@@ -324,13 +324,13 @@ def main():
 
     if submit:
         # Update session_state once on form submit
-        st.session_state.pg_keywords = {b: selected[b] for b in selected if selected[b]}
+        st.session_state.pg_keywords_selected = {b: selected[b] for b in selected if selected[b]}
         st.success("Keyword selections updated. Click Start Process to run with new keywords.")
     
     # Button to trigger the initial process
     if st.button("Start Process"):
         try:
-            news_df, summary_df, trends_df = run_process(st.session_state.pg_keywords)
+            news_df, summary_df, trends_df = run_process(st.session_state.pg_keywords_selected)
             st.session_state.process_completed = True  # Mark process as completed
             st.success("Process completed successfully!")
         except Exception as e:
